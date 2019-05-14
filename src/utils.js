@@ -40,8 +40,9 @@ const forecast = (latitude, longitude, callback) => {
             callback(response.body.error)
         } else {
             const { currently, daily } = response.body;
+            const { summary,windSpeed, cloudCover } = daily.data[0];
 
-            callback(undefined, `${daily.data[0].summary} It is currently ${currently.temperature} degrees out. There is ${currently.precipProbability}% chance of rain.`);
+            callback(undefined, `${summary} It is currently ${currently.temperature} degrees out. There is ${currently.precipProbability}% chance of rain. Wind speed is ${windSpeed} and cloud cover is ${cloudCover}`);
         }
     })
 }
